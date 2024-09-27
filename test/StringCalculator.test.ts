@@ -25,15 +25,24 @@ describe('String Calculator', () => {
         expect(calculator.add('1,2')).to.equal(3);
     });
     it('should use the delimiter when first line contains a delimiter', () => {
-        expect(calculator.add('#|\n12|5\n1')).to.equal(18);
+        expect(calculator.add('#|\n11|4\n1')).to.equal(16);
     });
 
     it('should support different delimiters when first line declares the delimiter started with hash:', () => {
-        expect(calculator.add('#|\n1 | 2 | 10')).to.equal(13);
+        expect(calculator.add('#|\n1 | 2 | 17')).to.equal(20);
     });
 
     it('should support different delimiters with any length', () => {
-        expect(calculator.add('#--\n1--7--23\n4--4')).to.equal(39);
+        expect(calculator.add('#--\n1--7--13\n4--6')).to.equal(31);
+    });
+    describe('Exception', () => {
+        it('should throw an exception when input is negative', () => {
+            expect(calculator.add(-1)).to.equal('Its a negative');
+        });
+
+        it('should throw an exception when input is negative non-integers', () => {
+            expect(calculator.add(-1.34243)).to.equal('Its a negative');
+        });
     });
 
 });
